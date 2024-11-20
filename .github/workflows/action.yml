@@ -1,0 +1,49 @@
+name: Build main
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    # These permissions are needed to interact with GitHub's OIDC Token endpoint.
+    permissions:
+      id-token: write
+      contents: write
+    steps:
+      - name: checkout docs
+        uses: actions/checkout@v4
+        with:
+          ref: docs-site
+      - name: checkout current branch
+        uses: actions/checkout@v4
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Set git credentials
+        run: |
+          git config --global user.name "${{ github.actor }}"
+          git config --global user.email "${{ github.actor }}@users.noreply.github.com"
+
+      - name: build version
+        run: mike deploy -b docs-site --push --update-aliases 0.1 latest
+#      - name: build docs
+#        run: mkdocs build
+      - name: Configure AWS credentials from ESS Master account
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::294692621334:role/docs-uploader
+          aws-region: eu-west-1
+      - name: checkout docs
+        uses: actions/checkout@v4
+        with:
+          ref: docs-site
+      - name: Copy files to the production website with the AWS CLI
+        run: |
+          aws s3 sync . s3://doc.cloudtechnologyoffice.com/ecs --exclude '.git/*'

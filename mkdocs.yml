@@ -1,0 +1,86 @@
+site_name: Enterprise Configuration Service Documentation
+site_url: https://doc.cloudtechnologyoffice.com/ecs/latest
+nav:
+  - About: index.md
+  - Getting Started:
+      - ECS Cloud: installation/cloud.md
+      - ECS On-Premise: installation/server.md
+      - Install ECS CLI: installation/cli.md
+      - Build Your First Config: config/index.md
+  - JSON/ YAML Configs:
+    - Build Strategies:
+        - Overview: build_strategies/index.md
+        - Reference: build_strategies/reference.md
+    - Build Schema Validation:
+        - Overview: schema_validation/index.md
+    - Secret Management:
+        - Overview: secret_management/index.md
+    - Drift Detection:
+        - Overview: drift_detection/index.md
+  - Pkl Configs:
+    - Overview: config/pkl.md
+    - AI Schema Validation: schema_validation/pkl.md
+  - Webhooks:
+    - Overview: web_hooks/index.md
+  - CLI:
+      - Overview: cli/index.md
+      - Admin Commands:
+          - Users: cli/admin-users.md
+      - User Commands:
+          - Config Pull, Edit and Save: cli/user-config-manage.md
+          - Config for Pipelines: cli/user-config-pipelines.md
+      - Full Reference: cli/full-reference.md
+theme:
+  logo: assets/cto-logo-white-transparent.png
+  favicon: assets/favicon-16x16.png
+  name: material
+  palette:
+    #primary: teal
+    # Palette toggle for light mode
+    - scheme: default
+      primary: teal
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - scheme: slate
+      primary: teal
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+extra:
+  version:
+    provider: mike
+
+markdown_extensions:
+  - attr_list
+  - md_in_html
+  - pymdownx.superfences
+    # palette:
+    #     primary: teal
+    # extra_css:
+  # - stylesheets/extra.css
+
+plugins:
+  - mike:
+      alias_type: symlink
+      canonical_version: latest
+  - search:
+  # - mkdocs-versioning:
+  #       version: 0.1.0
+  # - multiversion:
+  #   version_in_site_name: false
+  - glightbox:
+      touchNavigation: true
+      loop: false
+      effect: zoom
+      slide_effect: slide
+      width: 100%
+      height: auto
+      zoomable: true
+      draggable: true
+      skip_classes:
+        - custom-skip-class-name
+      auto_caption: true
+      caption_position: bottom
