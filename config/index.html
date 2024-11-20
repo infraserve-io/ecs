@@ -1,0 +1,1688 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://doc.cloudtechnologyoffice.com/ecs/latest/config/">
+      
+      
+        <link rel="prev" href="../installation/cli/">
+      
+      
+        <link rel="next" href="../build_strategies/">
+      
+      
+      <link rel="icon" href="../assets/favicon-16x16.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.5">
+    
+    
+      
+        <title>Build Your First Config - Enterprise Configuration Service Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.6a10b989.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.356b1318.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+   <link href="../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+        html.glightbox-open { overflow: initial; height: 100%; }
+        .gslide-title { margin-top: 0px; user-select: text; }
+        .gslide-desc { color: #666; user-select: text; }
+        .gslide-image img { background: white; }
+        
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}
+            </style> <script src="../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="indigo">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#your-first-config" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Enterprise Configuration Service Documentation" class="md-header__button md-logo" aria-label="Enterprise Configuration Service Documentation" data-md-component="logo">
+      
+  <img src="../assets/cto-logo-white-transparent.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Enterprise Configuration Service Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Build Your First Config
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Enterprise Configuration Service Documentation" class="md-nav__button md-logo" aria-label="Enterprise Configuration Service Documentation" data-md-component="logo">
+      
+  <img src="../assets/cto-logo-white-transparent.png" alt="logo">
+
+    </a>
+    Enterprise Configuration Service Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Getting Started
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Getting Started
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/cloud/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ECS Cloud
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/server/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ECS On-Premise
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/cli/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Install ECS CLI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Build Your First Config
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Build Your First Config
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#use-provided-examples" class="md-nav__link">
+    Use Provided Examples
+  </a>
+  
+    <nav class="md-nav" aria-label="Use Provided Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#yaml-json-based-examples" class="md-nav__link">
+    YAML/ JSON Based Examples
+  </a>
+  
+    <nav class="md-nav" aria-label="YAML/ JSON Based Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-1-most-basic-of-configs-with-no-merging" class="md-nav__link">
+    Example 1 (most basic of configs with no merging)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-2-get-more-dry-and-do-a-basic-merge" class="md-nav__link">
+    Example 2 (Get more DRY and do a basic merge)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-3-use-a-basic-strategy" class="md-nav__link">
+    Example 3 (Use a basic strategy)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-4-use-a-multi-object-strategy" class="md-nav__link">
+    Example 4 (Use a multi object strategy)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-5-use-a-config-generation-strategy-to-generate-ec2s" class="md-nav__link">
+    Example 5 (Use a config generation strategy to generate EC2s)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-6-use-a-config-generation-strategy-to-generate-more-objects" class="md-nav__link">
+    Example 6 (Use a config generation strategy to generate more objects)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pkl-examples" class="md-nav__link">
+    Pkl Examples
+  </a>
+  
+    <nav class="md-nav" aria-label="Pkl Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-7-a-simple-pkl-example" class="md-nav__link">
+    Example 7 (A simple Pkl example)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-8-a-complex-pkl-example" class="md-nav__link">
+    Example 8 (A complex Pkl example)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-9-a-multi-pkl-file-glob-build" class="md-nav__link">
+    Example 9 (A multi Pkl file glob build)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-10-a-complete-reference-config" class="md-nav__link">
+    Example 10 (A complete reference config)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#learn-and-build-from-scratch" class="md-nav__link">
+    Learn and Build from Scratch
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-next" class="md-nav__link">
+    Where Next?
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    JSON/ YAML Configs
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            JSON/ YAML Configs
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Build Strategies
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            Build Strategies
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../build_strategies/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../build_strategies/reference/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Reference
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Build Schema Validation
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Build Schema Validation
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schema_validation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Secret Management
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            Secret Management
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../secret_management/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Drift Detection
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            Drift Detection
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../drift_detection/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Pkl Configs
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Pkl Configs
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pkl/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schema_validation/pkl/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AI Schema Validation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Webhooks
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Webhooks
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../web_hooks/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    CLI
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            CLI
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cli/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_2" id="__nav_6_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Admin Commands
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_2">
+            <span class="md-nav__icon md-icon"></span>
+            Admin Commands
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cli/admin-users/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Users
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_3" id="__nav_6_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    User Commands
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_3">
+            <span class="md-nav__icon md-icon"></span>
+            User Commands
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cli/user-config-manage/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Config Pull, Edit and Save
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cli/user-config-pipelines/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Config for Pipelines
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cli/full-reference/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Full Reference
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#use-provided-examples" class="md-nav__link">
+    Use Provided Examples
+  </a>
+  
+    <nav class="md-nav" aria-label="Use Provided Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#yaml-json-based-examples" class="md-nav__link">
+    YAML/ JSON Based Examples
+  </a>
+  
+    <nav class="md-nav" aria-label="YAML/ JSON Based Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-1-most-basic-of-configs-with-no-merging" class="md-nav__link">
+    Example 1 (most basic of configs with no merging)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-2-get-more-dry-and-do-a-basic-merge" class="md-nav__link">
+    Example 2 (Get more DRY and do a basic merge)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-3-use-a-basic-strategy" class="md-nav__link">
+    Example 3 (Use a basic strategy)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-4-use-a-multi-object-strategy" class="md-nav__link">
+    Example 4 (Use a multi object strategy)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-5-use-a-config-generation-strategy-to-generate-ec2s" class="md-nav__link">
+    Example 5 (Use a config generation strategy to generate EC2s)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-6-use-a-config-generation-strategy-to-generate-more-objects" class="md-nav__link">
+    Example 6 (Use a config generation strategy to generate more objects)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pkl-examples" class="md-nav__link">
+    Pkl Examples
+  </a>
+  
+    <nav class="md-nav" aria-label="Pkl Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-7-a-simple-pkl-example" class="md-nav__link">
+    Example 7 (A simple Pkl example)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-8-a-complex-pkl-example" class="md-nav__link">
+    Example 8 (A complex Pkl example)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-9-a-multi-pkl-file-glob-build" class="md-nav__link">
+    Example 9 (A multi Pkl file glob build)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-10-a-complete-reference-config" class="md-nav__link">
+    Example 10 (A complete reference config)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#learn-and-build-from-scratch" class="md-nav__link">
+    Learn and Build from Scratch
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-next" class="md-nav__link">
+    Where Next?
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="your-first-config">Your First Config</h1>
+<p>If you followed the Getting Started steps, you now have ECS On-Premise server installed or have an ECS Cloud account, and have installed and initialized the CLI. Now it's time to create a config.</p>
+<p>You can either read the config explanations below copying and pasting in examples, or you can <a href="#learn-and-build-from-scratch">skip ahead</a> and build a config from scratch.</p>
+<h2 id="use-provided-examples">Use Provided Examples</h2>
+<p>1) Change into the config repository directory you setup when you installed and initialised the CLI. Make sure you are in the <code>repo</code> subdirectory</p>
+<p>2) If you installed ECS On-Premise server you've probably cloned the <a href="https://github.com/Cloud-Technology-Office/ecs-getting-started" target="_new">Getting Started Repo</a> to get this far. If this is the case you can copy the /config-examples directory from the Getting Started Repo to your config repository <code>repo</code> directory.</p>
+<p>If you have an ECS Cloud account and therefore didn't need to clone the repo, you can change to the <code>repo</code> directory in your config repository and download all the examples by using the command below:</p>
+<p><code>wget -O - https://github.com/Cloud-Technology-Office/ecs-getting-started/archive/main.zip | tar xz --strip=2 "ecs-getting-started-main/config-examples"</code></p>
+<h3 id="yaml-json-based-examples">YAML/ JSON Based Examples</h3>
+<p>Let's build the config in the examples, just as you would in your pipelines:</p>
+<h4 id="example-1-most-basic-of-configs-with-no-merging">Example 1 (most basic of configs with no merging)</h4>
+<p>We call this legacy, it's probably how most of you are doing config today, one config per pipeline or per instantiation of the pipeline. </p>
+<p>Jenkins or some other pipeline tool might be passing in a team name, region, environment or accopunt ID in order for a script to  choose the right variables file. This is a very typical approach to sourcing variables.</p>
+<p>In this example we use pipeline 1 and pipeline 2 to represent different ways you might call your pipeline but with different variables, such as multiple tfvars files. Imagine pipeline 1 might be 1 environment tfvars and pipeline 2 is another one. </p>
+<p>If you are using this approach, ECS will almost certainly be a drop in replacement for variables files used in your pipelines today, all you would need to do is let ECS generate the variables file from centralized config prior to pipeline run using the commands used in this example. </p>
+<p>Using ECS Cloud it is likely you could go from legacy config to signup and go live with this approach inside 30 minutes. After you have got to that stage, then you can strealine your config from there as the rest of the examples will teach you. </p>
+<p><a href="https://github.com/Cloud-Technology-Office/ecs-getting-started/tree/main/config-examples/example-1" __target="_new">Repo Example 1</a></p>
+<p><a class="glightbox" href="example-1-user-1.gif" data-type="image" data-width="100%" data-height="auto" data-title="ECS Config Examples - Example 1 - Pipeline 1" data-desc-position="bottom"><img alt="ECS Config Examples - Example 1 - Pipeline 1" src="example-1-user-1.gif" /></a>
+Commands used:  </p>
+<ul>
+<li><code>cto ecs config build --path config-examples/example-1/user-1 --recursive</code>  </li>
+</ul>
+<p><a class="glightbox" href="example-1-user-2.gif" data-type="image" data-width="100%" data-height="auto" data-title="ECS Config Examples - Example 1" data-desc-position="bottom"><img alt="ECS Config Examples - Example 1" src="example-1-user-2.gif" /></a>
+Command used:  </p>
+<ul>
+<li>
+<p><code>cto ecs config build --path config-examples/example-1/user-2 --recursive --filter ec2</code>  </p>
+</li>
+<li>
+<p><code>cto ecs config build --path config-examples/example-1/user-2 --recursive --filter 'ec2."user-2-instance-a"'</code>  </p>
+</li>
+</ul>
+<p>You can see user-2 had a slightly different config, and then we filtered it to retrieve just a single instance.</p>
+<p>But isn't the goal of ECS is to move beyond this legacy approach and become more DRY.  Imagine when used at scale, if you need to change the AMI for all pipelines.</p>
+<p>Let's move to a more DRY world.</p>
+<h4 id="example-2-get-more-dry-and-do-a-basic-merge">Example 2 (Get more DRY and do a basic merge)</h4>
+<p><a href="https://github.com/Cloud-Technology-Office/ecs-getting-started/tree/main/config-examples/example-2" __target="_new">Repo Example 2</a></p>
+<p><a class="glightbox" href="example-2.gif" data-type="image" data-width="100%" data-height="auto" data-title="ECS Config Examples - Example 2" data-desc-position="bottom"><img alt="ECS Config Examples - Example 2" src="example-2.gif" /></a></p>
+<p>Command used:  </p>
+<ul>
+<li><code>cto ecs config build --path config-examples/example-2 --recursive</code></li>
+</ul>
+<p>Here, the content has been recursively merged from top to bottom. This only works for hierarchies that only have 1 path. For more than 1 team, you need to use strategies to tell the merger what to do. </p>
+<h4 id="example-3-use-a-basic-strategy">Example 3 (Use a basic strategy)</h4>
+<p>In this example we have a merge strategy defined that will load a common directory and build config for each team by merging their overrides over the top of common.</p>
+<p><a href="https://github.com/Cloud-Technology-Office/ecs-getting-started/tree/main/config-examples/example-3" __target="_new">Repo Example 3</a></p>
+<p><a class="glightbox" href="example-3.gif" data-type="image" data-width="100%" data-height="auto" data-title="ECS Config Examples - Example 3" data-desc-position="bottom"><img alt="ECS Config Examples - Example 3" src="example-3.gif" /></a></p>
+<p>Command used:  </p>
+<ul>
+<li><code>cto ecs config build --path config-examples/example-3 --strategy-name merge_common_ec2_to_teams_ec2</code></li>
+</ul>
+<h4 id="example-4-use-a-multi-object-strategy">Example 4 (Use a multi object strategy)</h4>
+<p>In this example we will emit config for moore objects, not just the EC2 object.</p>
+<p><a href="https://github.com/Cloud-Technology-Office/ecs-getting-started/tree/main/config-examples/example-4" __target="_new">Repo Example 4</a></p>
+<p><a class="glightbox" href="example-4.gif" data-type="image" data-width="100%" data-height="auto" data-title="ECS Config Examples - Example 4" data-desc-position="bottom"><img alt="ECS Config Examples - Example 4" src="example-4.gif" /></a></p>
+<p>Command used:  </p>
+<ul>
+<li><code>cto ecs config build --path config-examples/example-4 --strategy-name merge_common_objects_to_teams_objects</code></li>
+</ul>
+<p>If you wanted to emit more objects, just edit the list_iterator to add more.</p>
+<h4 id="example-5-use-a-config-generation-strategy-to-generate-ec2s">Example 5 (Use a config generation strategy to generate EC2s)</h4>
+<p>In this example we're going to generate config based on a list of configurations we would like. We will base it on common and expand it into multiple instances of the same config with named identifiers and with instance level override. </p>
+<p>Note in the output, how disk_size has been overriden for each team and instance. This is so useful if you want to have a pipeline manage a set of resources, such as Terraform doing a <code>for_each</code> over each instance. </p>
+<p><a href="https://github.com/Cloud-Technology-Office/ecs-getting-started/tree/main/config-examples/example-5" __target="_new">Repo Example 5</a></p>
+<p><a class="glightbox" href="example-5.gif" data-type="image" data-width="100%" data-height="auto" data-title="ECS Config Examples - Example 5" data-desc-position="bottom"><img alt="ECS Config Examples - Example 5" src="example-5.gif" /></a></p>
+<p>Command used:  </p>
+<ul>
+<li><code>cto ecs config build --path config-examples/example-5 --strategy-name generate_ec2s</code></li>
+</ul>
+<p>Let's assume the pipeline runs per team instead of all teams, to emit the config for team 1 only, and only for the <code>ec2</code> object, just add <code>--filter '"team-1".ec2'</code> on the end of the command.</p>
+<p><a class="glightbox" href="example-5-2.gif" data-type="image" data-width="100%" data-height="auto" data-title="ECS Config Examples - Example 5 with filtering" data-desc-position="bottom"><img alt="ECS Config Examples - Example 5 with filtering" src="example-5-2.gif" /></a></p>
+<p>Command used:  </p>
+<ul>
+<li><code>cto ecs config build --path config-examples/example-5 --strategy-name generate_ec2s --filter '"team-1".ec2'</code></li>
+</ul>
+<h4 id="example-6-use-a-config-generation-strategy-to-generate-more-objects">Example 6 (Use a config generation strategy to generate more objects)</h4>
+<p>Example 5 was only looking at <code>ec2</code> objects, let's extend that to cater for more object types.</p>
+<p><a href="https://github.com/Cloud-Technology-Office/ecs-getting-started/tree/main/config-examples/example-6" __target="_new">Repo Example 6</a></p>
+<p><a class="glightbox" href="example-6.gif" data-type="image" data-width="100%" data-height="auto" data-title="ECS Config Examples - Example 6" data-desc-position="bottom"><img alt="ECS Config Examples - Example 6" src="example-6.gif" /></a></p>
+<p>Command used:  </p>
+<ul>
+<li><code>cto ecs config build --path config-examples/example-6 --strategy-name generate_listed_objects</code></li>
+</ul>
+<p>You will see that we removed the hard coded <code>ec2</code> reference and instead iterate over a list of object types. </p>
+<h3 id="pkl-examples">Pkl Examples</h3>
+<p>Using Pkl in ECS is really as simple as putting your Pkl files into a path in your config and using the following command to compile it:</p>
+<p><code>cto ecs config build --path &lt;path to root Pkl file&gt;</code></p>
+<p>When passing the <code>--format</code> option to the CLI, ECS will pass this to the Pkl binary and will return the requested format if the particular Pkl config supports that format. Where outout from Pkl comnfig is multi file YAML, the <code>--format</code> option is ignored.</p>
+<h4 id="example-7-a-simple-pkl-example">Example 7 (A simple Pkl example)</h4>
+<p><a class="glightbox" href="example-7.gif" data-type="image" data-width="100%" data-height="auto" data-title="ECS Config Examples - Example 7" data-desc-position="bottom"><img alt="ECS Config Examples - Example 7" src="example-7.gif" /></a></p>
+<p>Commands used:</p>
+<p><code>cto ecs config build --path config-examples/example-7/birds.pkl</code> </p>
+<p><code>cto ecs config build --path config-examples/example-7/birds.pkl --format yaml</code></p>
+<p><code>cto ecs config build --path config-examples/example-7/birds.pkl --format xml</code></p>
+<p><code>cto ecs config build --path config-examples/example-7/birds.pkl --format properties</code></p>
+<p><code>cto ecs config build --path config-examples/example-7/birds.pkl --format plist</code></p>
+<h4 id="example-8-a-complex-pkl-example">Example 8 (A complex Pkl example)</h4>
+<p>Pkl isn't always one file or even just local imports in a multi file config. This example pulls in external dependencies and outputs multi file YAML output. In the case where Pkl emits multi file YAML, the <code>--format</code> option is ignored.</p>
+<p><a class="glightbox" href="example-8.gif" data-type="image" data-width="100%" data-height="auto" data-title="ECS Config Examples - Example 8" data-desc-position="bottom"><img alt="ECS Config Examples - Example 8" src="example-8.gif" /></a></p>
+<p>Command used:</p>
+<p><code>cto ecs config build --path config-examples/example-8/k8s-frontend.pkl</code></p>
+<h4 id="example-9-a-multi-pkl-file-glob-build">Example 9 (A multi Pkl file glob build)</h4>
+<p>This example uses a glob pattern to match multiple files. </p>
+<p><a class="glightbox" href="example-9.gif" data-type="image" data-width="100%" data-height="auto" data-title="ECS Config Examples - Example 9" data-desc-position="bottom"><img alt="ECS Config Examples - Example 9" src="example-9.gif" /></a></p>
+<p>Command used:</p>
+<p><code>cto ecs config build --path /"config-examples/example-9/*/staging/us-west/*.pkl"</code></p>
+<p>And because this is an entire app manifest in multi file YAML format, it can be directly applied to your K8s cluster as follows:</p>
+<p><code>cto ecs config build --path /"config-examples/example-9/*/staging/us-west/*.pkl" | kubectl apply -f -</code></p>
+<h4 id="example-10-a-complete-reference-config">Example 10 (A complete reference config)</h4>
+<p>Example 10 demonstrates how a configuration can be build to serve multiple teams needs. Is has config for core infrastructure, and also config specific to individual teams. It is a comprehensive example that is well documented in the getting started repo. See <a target="_new" href="https://github.com/Cloud-Technology-Office/ecs-getting-started/tree/main/config-examples/example-10">example 10</a>.</p>
+<h2 id="learn-and-build-from-scratch">Learn and Build from Scratch</h2>
+<p>Alternatively you can follow along below and create your own config from scratch and adapt the content and commands to suit.</p>
+<p>1) Let's create a very basic config:, we'll create a team based config, each team will have their own settings for an EC2. Note, <code>team 2</code> has a different VPC name than <code>team-1</code>.</p>
+<p>Important: Your config directory has been initialized as a local Git repo, it lives in a subdirectory <code>repo</code>. Your config needs to live in the <code>repo</code> directory, and all ECS commands take place in that directory.</p>
+<p><a class="glightbox" href="ecs-config-1.gif" data-type="image" data-width="100%" data-height="auto" data-title="ECS Config - Initial" data-desc-position="bottom"><img alt="ECS Config - Initial" src="ecs-config-1.gif" /></a></p>
+<p class="annotate">Gif Content: (1)</p>
+<ol>
+<li>
+<p class="annotate"><code>teams/team-1/ec2.yaml</code> (1)</p>
+<ol>
+<li><div class="highlight"><pre><span></span><code><span class="nt">ec2</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">instance_type    </span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">t2.medium</span>
+<span class="w">  </span><span class="nt">user_data        </span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span>
+<span class="w">  </span><span class="nt">ami              </span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ami-123456789</span>
+<span class="w">  </span><span class="nt">instance_profile </span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">instance-profile-1</span>
+<span class="w">  </span><span class="nt">disk_size        </span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">200</span>
+<span class="w">  </span><span class="nt">vpc_name         </span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">team-1-vpc</span>
+<span class="w">  </span><span class="nt">tags</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">terraform </span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</code></pre></div></li>
+</ol>
+<p class="annotate"><code>teams/team-2/ec2.yaml</code> (1)</p>
+<ol>
+<li><div class="highlight"><pre><span></span><code><span class="nt">ec2</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">instance_type    </span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">t2.medium</span>
+<span class="w">  </span><span class="nt">user_data        </span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span>
+<span class="w">  </span><span class="nt">ami              </span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ami-123456789</span>
+<span class="w">  </span><span class="nt">instance_profile </span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">instance-profile-1</span>
+<span class="w">  </span><span class="nt">disk_size        </span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">200</span>
+<span class="w">  </span><span class="nt">vpc_name         </span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">team-2-vpc</span>
+<span class="w">  </span><span class="nt">tags</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">terraform </span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</code></pre></div></li>
+</ol>
+<p><code>cto ecs config push</code></p>
+</li>
+</ol>
+<p>We've now created config for 2 teams and pushed it to ECS. You could take a look at your repository now and you will see what ECS is storing there. Note, _users.yaml file has your initial admin user with encrypted token stored. </p>
+<p>2) Now let's see how we can consume that in a pipeline.</p>
+<p>The <code>cto ecs config build</code> command is what you use in your pipelines to generate consumable config. It has a <code>--path</code> parameter that allows config to be be extracted from anywhere in the path. If we specified <code>cto ecs config build --path /teams/team-2</code> we will get the following returned:</p>
+<div class="highlight"><pre><span></span><code><span class="p p-Indicator">{</span>
+<span class="w">  </span><span class="s">&quot;ec2&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">{</span>
+<span class="w">    </span><span class="s">&quot;instance_type&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;t2.medium&quot;</span><span class="p p-Indicator">,</span>
+<span class="w">    </span><span class="s">&quot;user_data&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="nv">null</span><span class="p p-Indicator">,</span>
+<span class="w">    </span><span class="s">&quot;ami&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;ami-123456789&quot;</span><span class="p p-Indicator">,</span>
+<span class="w">    </span><span class="s">&quot;instance_profile&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;instance-profile-1&quot;</span><span class="p p-Indicator">,</span>
+<span class="w">    </span><span class="s">&quot;disk_size&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="nv">200</span><span class="p p-Indicator">,</span>
+<span class="w">    </span><span class="s">&quot;vpc_name&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;team-2-vpc&quot;</span><span class="p p-Indicator">,</span>
+<span class="w">    </span><span class="s">&quot;tags&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">{</span>
+<span class="w">      </span><span class="s">&quot;terraform&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="nv">true</span>
+<span class="w">    </span><span class="p p-Indicator">}</span>
+<span class="w">  </span><span class="p p-Indicator">}</span>
+<span class="p p-Indicator">}</span>
+</code></pre></div>
+<p>If we only want the content under the <code>ec2</code> object, which is likely for your pipeline code, use <code>--filter</code> parameter to filter content out of the returned config. Let's see it in action:</p>
+<p class="annotate"><a class="glightbox" href="ecs-config-2.gif" data-type="image" data-width="100%" data-height="auto" data-title="ECS Config - Initial" data-desc-position="bottom"><img alt="ECS Config - Initial" src="ecs-config-2.gif" /></a>
+Gif Content: (1)</p>
+<ol>
+<li><code>cto ecs config build --path /teams/team-2</code></li>
+</ol>
+<p>But how is that DRY I hear you say. Well, it's not, but it probably looks like many of your existing pipeline configurations. Now let's put the ECS touch on it and make it DRY!</p>
+<p>First let's restructure the configuration a to give it a section for common config, then we'll override just the parameters that are different. In our example above, <code>team-2</code> had a specific VPC <code>team-2-vpc</code> whereas <code>team-1</code> had <code>default</code>. If the majority of teams had a VPC called <code>default</code> that should be the setting in common. Let's also override the default <code>disk_size</code> for <code>team-1</code>.</p>
+<p class="annotate"><a class="glightbox" href="ecs-config-3.gif" data-type="image" data-width="100%" data-height="auto" data-title="ECS Config - Change it to DRY" data-desc-position="bottom"><img alt="ECS Config - Change it to DRY" src="ecs-config-3.gif" /></a>
+Gif Content: (1)</p>
+<ol>
+<li>
+<p class="annotate"><code>teams/common/ec2.yaml</code> (1)</p>
+<ol>
+<li><div class="highlight"><pre><span></span><code><span class="nt">ec2</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">instance_type    </span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">t2.medium</span>
+<span class="w">  </span><span class="nt">user_data        </span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span>
+<span class="w">  </span><span class="nt">ami              </span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ami-123456789</span>
+<span class="w">  </span><span class="nt">instance_profile </span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">instance-profile-1</span>
+<span class="w">  </span><span class="nt">disk_size        </span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">200</span>
+<span class="w">  </span><span class="nt">vpc_name         </span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span>
+<span class="w">  </span><span class="nt">tags</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">terraform </span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</code></pre></div></li>
+</ol>
+<p class="annotate"><code>teams/teams/team-1/ec2.yaml</code> (1)</p>
+<ol>
+<li><div class="highlight"><pre><span></span><code><span class="nt">ec2</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">disk_size        </span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">300</span>
+</code></pre></div></li>
+</ol>
+<p class="annotate"><code>teams/teams/team-2/ec2.yaml</code> (1)</p>
+<ol>
+<li><div class="highlight"><pre><span></span><code><span class="nt">ec2</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">vpc_name        </span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">team-2-vpc</span>
+</code></pre></div></li>
+</ol>
+</li>
+</ol>
+<p>Now let's add a strategy. </p>
+<p>In the teams directory, create <code>__strategies.yaml</code></p>
+<p>The contents is as follows:</p>
+<p><code>/teams/__strategies.yaml</code> - Note, this is in top level teams directory.
+<div class="highlight"><pre><span></span><code><span class="nt">strategies</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">teams_merge_common</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">operations</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">for_each</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">iterator</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$directory_data</span>
+<span class="w">          </span><span class="nt">actions</span><span class="p">:</span>
+<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">inject</span><span class="p">:</span>
+<span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$common</span>
+<span class="w">              </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">$each_value.ec2</span>
+<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">add_parent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ec2</span>
+<span class="w">    </span><span class="nt">variable_definitions</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">common</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./common/</span>
+<span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data_with_key_from_object_field</span>
+<span class="w">        </span><span class="nt">source_object_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ec2</span>
+<span class="w">        </span><span class="nt">destination_object_path</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;&#39;</span>
+<span class="w">      </span><span class="nt">directory_data</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./teams/{team}/</span>
+<span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data_with_key_from_path</span>
+</code></pre></div></p>
+<p>Next you need to push the config with <code>cto ecs config push</code>.</p>
+<p>Now let's see how to consume DRY config in your pipeline. To do this we'll use the follow command:</p>
+<p><code>cto ecs config build --path teams --strategy-name teams_merge_common</code></p>
+<p>And we'll filter the output to get just <code>team-1</code></p>
+<p><code>cto ecs config build --path teams --strategy-name teams_merge_common --filter '"team-1"'</code></p>
+<p>And we'll filter the output to get just <code>team-1</code> <code>ec2</code> object.</p>
+<p><code>cto ecs config build --path teams --strategy-name teams_merge_common --filter '"team-1".ec2'</code></p>
+<p>Note, filters follow JMSPath syntax. Read about JMSPath and try out filtering in the playground <a href="https://jmespath.org/tutorial.html">here</a>.</p>
+<p><a class="glightbox" href="ecs-config-4.gif" data-type="image" data-width="100%" data-height="auto" data-title="ECS Config - Emit DRY config in pipeline" data-desc-position="bottom"><img alt="ECS Config - Emit DRY config in pipeline" src="ecs-config-4.gif" /></a></p>
+<h2 id="where-next">Where Next?</h2>
+<p>Learn ECS strategies <a href="../build_strategies">here</a></p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.aecac24b.min.js"></script>
+      
+    
+  <script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});})</script></body>
+</html>
